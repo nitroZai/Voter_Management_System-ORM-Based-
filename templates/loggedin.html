@@ -1,0 +1,41 @@
+<!-- 
+
+<form class="container text-center" action="">
+
+<input type="text">
+<input type="submit" value="Login">
+
+</form> -->
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container text-center">
+    <br>
+{% if user.is_voted == False %}
+    <h2>Welcome to {{user.admin}} Voting Polls</h2>
+    
+    <form action="{% url 'aftervote' %}" method="post">
+
+        {% csrf_token %}
+        
+        <br><br>
+        Your Username:
+        <input class="form-control" type="text" name="username">
+        <br>
+        <select name="vote" class="form-control custom-select custom-select-lg mb-3">
+            {% for candidate in candidates %}
+                <option value="{{candidate.name}}">{{candidate.name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Vote" class="btn btn-block btn-primary">
+
+    </form>
+{% else %}
+
+    <h2>You alreayd voted, Go get tested for Alzheimer's </h2>
+
+{% endif %}
+</div>
+{% endblock %}

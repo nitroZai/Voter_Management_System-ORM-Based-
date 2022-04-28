@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container">
+
+    <br>
+    <br>
+    
+    <h2>Responsible Citizens</h2>
+    <br>
+
+    <table class="table table-striped table-hover table-bordered table-responsive" style="text-align: center;">
+    
+        <tr class="table-dark ">
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Hub</th>
+
+        </tr>
+    
+        {% for user in users %}
+            {% if user.is_voted == True %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    
+    </table>
+
+    <br>
+    <br>
+    
+    <h2>Irresponsible Citizens</h2>
+    <br>
+
+    <table class="table table-striped table-hover table-bordered table-responsive" style="text-align: center;">
+    
+        <tr class="table-dark ">
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Hub</th>
+
+        </tr>
+    
+        {% for user in users %}
+            {% if user.is_voted == False and user.is_admin == False %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.admin}}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'register-save' %}" class="container" method="post">
+
+    {% csrf_token %}
+
+    <br><br>
+
+    <label for="name">Username</label>
+    <input class="form-control" type="text" name="username">
+
+    <label for="name">Email</label>
+    <input type="text" class="form-control" name="email">
+
+    <br>
+    <label for="name">Choose your Hub</label>
+    <select name="hub" class="form-control custom-select custom-select-lg mb-3">
+        {% for admin in admins %}
+        <option value="{{ admin.hub_name }}">{{ admin.hub_name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="name">Password</label>
+    <input type="password" class="form-control" name="password">
+
+    <label for="name">Confirm Password</label>
+    <input type="password" name="password2" class="form-control">
+
+    <input type="submit" class="btn btn-primary btn-block" value="Register!" class="form-control">
+
+</form>
+{% endblock %}
